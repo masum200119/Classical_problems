@@ -63,22 +63,27 @@ int query(int root,int lo,int hi,int l,int r)
     int right=query(2*root+1,mid+1,hi,l,r);
     return max(left,right);
 }
-void update(int root,int lo,int hi,int ind ,int value)
+void update(int root,int lo,int hi,int l ,int r,int value)
 {
-    if(hi==lo)
+    if(lo>r || hi<l)
     {
-        seg[root]=value;return;
+         return;
+    }
+    if(lo>=l && hi<=r)
+    {
+        seg[root]=value;
+        return;
     }
     int mid=(lo+hi)/2;
-    if(ind<=mid)
-    {
-        update(2*root,lo,mid,ind,value);
-    }
-    else
-    {
-        update(2*root+1,mid+1,hi,ind,value);
-    }
-    seg[root]=max(seg[2*root],seg[2*root+1]);
+    // if(ind<=mid)
+    // {
+        update(2*root,lo,mid,l,r,value);
+    // }
+    // else
+    // {
+        update(2*root+1,mid+1,hi,l,r,value);
+    // }
+    seg[root]=max(seg[2*root]+seg[2*root+1]);
 }
 void Chaos()
 {
@@ -98,7 +103,7 @@ void Chaos()
         {
             int ind,value;
             cin>>ind>>value;
-            update(1,1,n,ind,value);
+            update(1,1,n,l,r,value);
         }
         else
         {
