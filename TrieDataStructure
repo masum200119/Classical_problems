@@ -1,0 +1,130 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define sort(a) sort(a.begin(),a.end())
+#define all(x) x.begin(),x.end()
+
+// #define unq(x) x.erase(unique(aint(x)),x.end());
+#define int long long
+#define int long long
+#define endl "\n"
+#define Endl "\n"
+#define hae cout<<"Yes"<<endl;
+#define nah cout<<"No"<<endl;
+#define Palmist_Masum ios::sync_with_stdio(false);cin.tie(0);cout.tie(0)
+#define pb push_back
+#define pp pchoice_back
+#define vtr vector<int>
+#define sz size()
+#define print(x) cout<<x<<Endl;
+#define ff first
+#define ss second
+#define fncc (auto valid =[&] (int x) -> bool { };)
+typedef vector <pair <int , int> > vpr;
+#define printarray(a) for(int i=0;i<a.sz;i++)cout<<a[i]<<' ';cout<<endl;
+/*vector<bitset<31>> v(n);
+bitset<31>kk(arr[i]);
+v[i]=kk;*/
+const int MAXN=1e6+1;
+const int dj=1e9+7;
+const int INF=1e16;
+void depression()
+{
+    #ifndef ONLINE_JUDGE
+    freopen("input.txt","r",stdin);
+    freopen("output.txt","w",stdout);
+    #endif
+} 
+struct node
+{
+    bool endmark;
+    node* next[27];
+    node()
+    {
+        endmark=false;
+        for(int i=0;i<26;i++)
+        {
+            next[i]=NULL;
+        }
+    }
+} *root ;
+void insert( string str)
+{
+    node* curr=root;
+    for(int i=0;i<(int)str.sz;i++)
+    {
+        int id=str[i]-'a';
+        if(curr->next[id] == NULL)
+        {
+            curr->next[id]= new node();
+        }
+        curr=curr->next[id];
+    }
+    curr->endmark=true;
+}
+bool Search(string str )
+{
+    int len=str.sz;
+    node* curr =root;
+    for(int i=0;i<len;i++)
+    {
+        int id=str[i]-'a';
+        if(curr->next[id]==NULL)
+        {
+            return false;
+        }
+        curr=curr->next[id];
+    }
+    return curr->endmark;
+}
+void del(node* cur)
+{
+    for (int i = 0; i < 26; i++)
+        if (cur->next[i])
+            del(cur->next[i]);
+
+    delete (cur);
+}
+void Chaos()
+{
+     // puts("ENTER NUMBER OF WORDS");
+    root = new node();
+    int num_word;
+    cin >> num_word;
+    for (int i = 1; i <= num_word; i++) {
+        string s;
+        cin>>s;
+        insert(s);
+    }
+    // puts("ENTER NUMBER OF QUERY");
+    int query;
+    cin >> query;
+    for (int i = 1; i <= query; i++) {
+        string s;
+        cin>>s;
+        if (Search(s)==1)
+        {
+            puts("FOUND");
+        }
+        else
+        {
+            puts("NOT FOUND");
+        }
+    }
+    del(root); //ট্রাইটা ধ্বংস করে দিলাম
+    // breturn 0;
+}
+signed main()
+{
+    // depression();
+    Palmist_Masum;
+    int __=1;
+    // cin>>__;
+    for(int i=1; __--;i++)
+    {
+        // cout<<"Case "<<i<<":"<<endl;
+        
+        Chaos();
+    }
+     
+    return 0;
+}
