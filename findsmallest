@@ -1,0 +1,15 @@
+int findSmallestMissing(vector<int>nums, int low, int high)
+{
+    if (low > high) {
+        return low;
+    }
+ 
+    int mid = low + (high - low) / 2;
+    if (nums[mid] == mid) {
+        return findSmallestMissing(nums, mid + 1, high);
+    }
+    else {
+        
+        return findSmallestMissing(nums, low, mid - 1);
+    }
+}
