@@ -1,0 +1,50 @@
+#include<bits/stdc++.h>
+using namespace std;
+int n,m;
+vector<int>dt(1000,1000);
+vector<vector<pair<int,int>>>g(1000);
+void dijakstra(int source)
+{
+    dt[source]=0;
+    set<pair<int,int>>s;
+    s.insert({0,source});
+    while(!s.empty())
+    {
+        auto pt= *(s.begin());
+        s.erase(pt);
+        for(auto l :g[pt.second])
+        {
+            ///l.first= edge
+            ///l.second=weight
+            if(dt[l.first]> dt[pt.second]+l.second)
+            {
+                ///pt.second=weight
+                ///pt.first=edge
+                s.erase({dt[l.first],l.first});
+                dt[l.first]=dt[pt.second]+l.second;
+                s.insert({dt[l.first],l.first});
+            }
+        }
+
+    }
+    for(int i=1;i<=n;i++)
+    {
+        cout<<dt[i]<<" ";
+    }
+}
+int main()
+{
+   
+    cin>>n>>m;
+    
+    for(int i=0;i<m;i++)
+    {
+        int u,v,w;
+        cin>>u>>v>>w;
+        g[u].push_back({v,w});
+        g[v].push_back({u,w});
+    }
+    int source;
+    cin>>source;
+    dijakstra(source);
+}
