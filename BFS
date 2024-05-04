@@ -1,0 +1,86 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define all(x) x.begin(),x.end()
+#define int long long
+#define ll long long
+#define endl "\n"
+#define yes cout<<"Yes"<<endl;
+#define no cout<<"No"<<endl;
+#define BAll ios::sync_with_stdio(false);cin.tie(0);cout.tie(0)
+#define pb push_back
+#define pp pop_back()
+#define vtr vector<int>
+#define sz size()
+#define ff first
+#define ss second
+#define fncc (auto valid =[&] (int x) -> bool { };)
+#define vout(a) for(auto x:a)cout<<x<<' ';
+const int INF=1e9+1;
+const int MAXN=1e6+1;
+const int MOD=1e9+7;
+const int nax=INT_MAX;
+const int nin=INT_MIN;
+void Masum()
+{
+    #ifndef ONLINE_JUDGE
+    freopen("input.txt","r",stdin);
+    freopen("output.txt","w",stdout);
+    #endif
+}
+bool prime(int n) {
+    for(int i=2; i*i<=sqrt(n); i++) 
+    {
+        if(n%i==0) return false;
+    }
+    return true;
+}
+vector<int>adj[200119];
+int level[200119];
+bool vis[200119];
+int d1[200119],d2[200119];
+void bfs(int source)
+{
+    queue<int>q;
+    q.push(source);
+    vis[source]=1;
+    while(!q.empty())
+    {
+        int x= q.front();
+        cout<<x<<" ";
+        q.pop();
+        for(auto l:adj[x])
+        {
+            if(vis[l])continue;
+            q.push(l);
+            vis[l]=1;
+        }
+    }
+
+}
+void jh()
+{
+    int n;
+    cin>>n;
+    for(int i=0;i<n-1;i++)
+    {
+        int u,v;
+        cin>>u>>v;
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }
+    bfs(1);
+
+}
+signed main()
+{
+    Masum();
+    BAll;
+    // int __;
+    // cin>>__;
+    // for(; __--; )
+    // {
+    //     //cout<<"Case "<<i<<": ";
+        jh();
+    // }
+    return 0;
+}
