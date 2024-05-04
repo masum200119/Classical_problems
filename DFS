@@ -1,0 +1,75 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define all(x) x.begin(),x.end()
+#define int long long
+#define ll long long
+#define endl "\n"
+#define yes cout<<"Yes"<<endl;
+#define no cout<<"No"<<endl;
+#define Siiiiii__u ios::sync_with_stdio(false);cin.tie(0);cout.tie(0)
+#define pb push_back
+#define pp pop_back()
+#define vtr vector<int>
+#define sz size()
+#define ff first
+#define ss second
+const int INF=1e9+1;
+const int MAXN=1e6+1;
+const int MOD=1e9+7;
+const int nax=INT_MAX;
+const int nin=INT_MIN;
+
+//priority_queue<int,vector<int>,greater<int>>q;
+
+void Masum()
+{
+    #ifndef ONLINE_JUDGE
+    freopen("input.txt","r",stdin);
+    freopen("output.txt","w",stdout);
+    #endif
+}
+bool prime(int n) {
+    for(int i=2; i*i<=sqrt(n); i++) 
+    {
+        if(n%i==0) return false;
+    }
+    return true;
+}
+vector<int> adj[200119];
+int vis[200119];
+void Dfs(int node)
+{
+    vis[node]=1;
+    cout<<node<<" ";
+    for(auto child:adj[node])
+    {
+        if(vis[child])continue;
+        Dfs(child);
+    }
+}
+void masum()
+{
+    int n,e;
+    cin>>n;n--;
+    while(n--)
+    {
+        int x,y;
+        cin>>x>>y;
+        adj[x].pb(y);
+        adj[y].pb(x);
+    }
+    Dfs(1);
+}   
+signed main()
+{
+    Masum();
+    Siiiiii__u;
+    // int __;
+    // cin>>__;
+    // for(; __--; )
+    // {
+        //cout<<"Case "<<i<<": ";
+        masum();
+    // }
+    return 0;
+}
