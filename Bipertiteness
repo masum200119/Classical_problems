@@ -1,0 +1,97 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define all(x) x.begin(),x.end()
+#define int long long
+#define ll long long
+#define endl "\n"
+#define yes cout<<"Yes"<<endl;
+#define no cout<<"No"<<endl;
+#define abc ios::sync_with_stdio(false);cin.tie(0);cout.tie(0)
+#define pb push_back
+#define pp pop_back()
+#define vtr vector<int>
+#define sz size()
+#define ff first
+#define ss second
+#define getv(a) for(auto &x:a)cin>>x;
+#define fncc (auto valid =[&] (int x) -> bool { };)
+#define vout(a) for(auto x:a)cout<<x<<' ';
+const int INF=1e9+1;
+const int MAXN=1e6+1;
+const int MOD=1e9+7;
+const int nax=INT_MAX;
+const int nin=INT_MIN;
+void Masum()
+{
+    #ifndef ONLINE_JUDGE
+    freopen("input.txt","r",stdin);
+    freopen("output.txt","w",stdout);
+    #endif
+}
+const int n=200119;
+vtr adj[n];
+bool vis[n];
+bool level[n];
+int shunno=0,ek=0;
+void bfs(int source)
+{
+    
+    queue<int>q;
+    q.push(source);
+    vis[source]=1;
+    level[source]=0;
+    shunno++;
+    while(!q.empty())
+    {
+        int x=q.front();
+        q.pop();
+        for(auto child :adj[x])
+        {
+            if(vis[child]==0)
+            {
+                vis[child]=1;
+                q.push(child);
+                if(level[x]==0)
+                {
+                    level[child]=1;
+                    ek++;
+                }
+                else
+                {
+                    level[child]=0;
+                    shunno++;
+                }
+            }
+        }
+    }
+}
+void Future()
+{
+    
+    int e;
+    cin>>e;
+    for(int i=0;i<e-1;++i)
+    {
+        int u,v;
+        cin>>u>>v;
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }
+    bfs(1);
+   // cout<<shunno<<" "<<ek<<endl;
+    cout<<(shunno*ek)-e+1<<endl;
+
+}
+signed main()
+{
+    Masum();
+    abc;
+    // int __;
+    // cin>>__;
+    // for(; __--; )
+    // {
+    //     //cout<<"Case "<<i<<": ";
+        Future();
+    // }
+    return 0;
+}
