@@ -1,0 +1,21 @@
+#include<bits/stdc++.h>
+using  namespace  std;
+
+int main()
+{
+    vector<tuple<int,int,int>>vr;
+    for(int i=0;i<5;i++)
+    {
+
+        int x,y,z;
+        cin>>x>>y>>z;
+        vr.push_back(make_tuple(x,y,z));
+    }
+    sort(vr.begin(),vr.end());
+    //cout<<(get<0>)tuple<<endl;
+    for( auto t:vr)
+    {
+
+        cout<<get<0>(t);
+    }
+}
