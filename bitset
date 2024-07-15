@@ -1,0 +1,100 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define all(x) x.begin(),x.end()
+// #define sort(a) sort(a.begin(),a.end())
+// #define rsort(a) sort(a.rbegin(),a.rend())
+// #define unq(x) x.erxx(unique(aint(x)),x.end());
+#define ll long long
+#define int long long
+#define endl "\n"
+#define Endl "\n"
+#define hae cout<<"Yes"<<endl;
+#define nah cout<<"No"<<endl;
+#define Determined ios::sync_with_stdio(false);cin.tie(0);cout.tie(0)
+#define pb push_back
+#define pp pop_back
+#define vtr vector<int>
+#define vpr vector<pair<int,int>>
+#define sz size()
+#define print(x) cout<<x<<Endl;
+#define ff first
+#define ss second
+#define fncc (aux valid =[&] (int x) -> bool { };)
+#define printaay(a) for(int i=0;i<a.sz;i++)cout<<a[i]<<' ';cout<<endl;
+/*vecxr<bitset<31>> v(n);
+bitset<31>kk(a[i]);
+v[i]=kk;*/
+#define vec vector
+
+using  vl=vec<int>;
+using  vc=vec<char>;
+using vint=vec<vec<int>>;
+using vcc=vec<vec<char>>;
+const int MAXN=2*(1e5+10);
+// const int dj=1e9+7;
+// const int inf=1e16;
+void Non_Determined()
+{
+    #ifndef ONLINE_JUDGE
+    freopen("input.txt","r",stdin);
+    freopen("output.txt","w",stdout);
+    #endif
+}
+bool isPowerOfTwo( int n)
+{
+    return (ceil(log2(n)) == floor(log2(n)));
+}
+void Chaos()
+{
+    
+    int n;
+    cin>>n;
+    if(isPowerOfTwo(n))
+    {
+        cout<<1<<endl<<n<<endl;return;
+    }
+    vtr v;
+    int x=n;
+    bitset<64> bt(x);
+    string st=bt.to_string();
+    uint64_t number;
+    number = strtoull (st.c_str (),NULL,2);
+    // unsigned long long decimal = binaryToDecimal(s);
+    v.push_back(number);
+    vector<int>df;
+    for(int i=0;i<64;i++)
+    {
+        if(bt[i]==1)
+        {
+            df.push_back(i);
+        }
+    }
+    for(int i=0;i<df.sz;i++)
+    {
+        int uu=df[i];
+        bt[uu]=0;
+        string st=bt.to_string();
+        number = strtoull (st.c_str (),NULL,2);
+        v.push_back(number);
+        bt[uu]=1;
+    }
+    cout<<v.sz<<endl;
+    reverse(all(v));
+    printaay(v);
+
+} 
+signed main()
+{
+    Non_Determined();
+    Determined;
+    int __=1;
+    cin>>__;
+    for(int i=1; __--;i++)
+    {
+       // cout<<"Cxx "<<i<<": ";
+        
+        Chaos();
+    }
+     // Chaos();
+    return 0;
+}
